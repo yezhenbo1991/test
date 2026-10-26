@@ -3,7 +3,8 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { EventStreamContentType, fetchEventSource } from '@microsoft/fetch-event-source';
 
 const API_BASE_URL = '';
-const token = ref(sessionStorage.getItem('projectinfo-demo-token') || '');
+const configuredToken = (import.meta.env.VITE_ACCESS_TOKEN || '').trim();
+const token = ref(configuredToken || sessionStorage.getItem('projectinfo-demo-token') || '');
 const tokenInput = ref(token.value);
 const projName = ref(localStorage.getItem('projectinfo-demo-projName') || '');
 const layerName = ref(localStorage.getItem('projectinfo-demo-layerName') || '');
